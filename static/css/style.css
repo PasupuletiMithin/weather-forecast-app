@@ -1,0 +1,574 @@
+/* =========================================
+   BASIC PAGE SETTINGS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #4facfe,
+        #00c6ff
+    );
+
+    color: #ffffff;
+
+    padding: 30px 15px;
+
+    transition: background 0.5s ease;
+}
+
+
+.app-container {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+
+.header p {
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   SEARCH SECTION
+========================================= */
+
+.search-section {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+/*
+    This wrapper contains both:
+    1. Search box
+    2. Location suggestions
+*/
+
+.search-wrapper {
+    position: relative;
+
+    width: 100%;
+    max-width: 550px;
+}
+
+
+.search-box {
+    display: flex;
+    width: 100%;
+}
+
+
+.search-box input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 14px 16px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px 0 0 10px;
+
+    font-size: 1rem;
+}
+
+
+.search-box input:focus {
+    box-shadow:
+        inset 0 0 0 2px
+        rgba(21, 101, 192, 0.25);
+}
+
+
+.search-box button {
+    padding: 14px 22px;
+
+    border: none;
+
+    background: #ffffff;
+    color: #1565c0;
+
+    font-weight: bold;
+
+    border-radius: 0 10px 10px 0;
+
+    cursor: pointer;
+}
+
+
+.search-box button:hover {
+    background: #eeeeee;
+}
+
+
+/* =========================================
+   LOCATION AUTOCOMPLETE DROPDOWN
+========================================= */
+
+.suggestions {
+    position: absolute;
+
+    top: calc(100% + 5px);
+    left: 0;
+
+    width: 100%;
+
+    max-height: 280px;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    color: #333333;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.20);
+
+    z-index: 1000;
+}
+
+
+.suggestion-item {
+    padding: 12px 15px;
+
+    cursor: pointer;
+
+    border-bottom:
+        1px solid #eeeeee;
+}
+
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+
+.suggestion-item:hover,
+.suggestion-item.active {
+    background: #f0f6fc;
+}
+
+
+.suggestion-name {
+    display: block;
+
+    font-weight: bold;
+
+    color: #222222;
+}
+
+
+.suggestion-details {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 0.85rem;
+
+    color: #777777;
+}
+
+
+.no-suggestions {
+    padding: 13px 15px;
+
+    text-align: center;
+
+    color: #777777;
+}
+
+
+/* =========================================
+   TEMPERATURE UNIT BUTTONS
+========================================= */
+
+.unit-toggle {
+    display: flex;
+
+    flex-shrink: 0;
+
+    background:
+        rgba(255, 255, 255, 0.2);
+
+    padding: 4px;
+
+    border-radius: 10px;
+}
+
+
+.unit-button {
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    padding: 9px 12px;
+
+    cursor: pointer;
+
+    border-radius: 7px;
+}
+
+
+.unit-button.active {
+    background: white;
+    color: #1565c0;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.message,
+.error-message {
+    text-align: center;
+
+    padding: 15px;
+
+    margin: 20px 0;
+
+    border-radius: 10px;
+}
+
+
+.message {
+    background:
+        rgba(255, 255, 255, 0.2);
+}
+
+
+.error-message {
+    background:
+        rgba(150, 0, 0, 0.5);
+}
+
+
+/* =========================================
+   WEATHER CONTENT
+========================================= */
+
+.weather-content {
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(10px);
+
+    padding: 30px;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   CURRENT WEATHER
+========================================= */
+
+.current-weather {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.current-weather h2 {
+    font-size: 2rem;
+
+    margin-bottom: 5px;
+}
+
+
+.local-time {
+    opacity: 0.85;
+
+    margin-bottom: 10px;
+}
+
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+}
+
+
+.temperature {
+    font-size: 4rem;
+
+    font-weight: bold;
+}
+
+
+.condition {
+    font-size: 1.4rem;
+
+    margin-top: 5px;
+}
+
+
+.feels-like {
+    margin-top: 8px;
+
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   WEATHER DETAILS
+========================================= */
+
+.weather-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 35px;
+}
+
+
+.detail-card {
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    padding: 20px 10px;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.detail-card span {
+    display: block;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 8px;
+
+    opacity: 0.85;
+}
+
+
+.detail-card strong {
+    font-size: 1.1rem;
+}
+
+
+/* =========================================
+   HOURLY FORECAST
+========================================= */
+
+.hourly-section h3 {
+    margin-bottom: 15px;
+}
+
+
+.hourly-container {
+    display: flex;
+
+    gap: 12px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+}
+
+
+.hour-card {
+    min-width: 110px;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    padding: 15px 10px;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.hour-card img {
+    width: 55px;
+    height: 55px;
+}
+
+
+.hour-time {
+    font-size: 0.9rem;
+}
+
+
+.hour-temp {
+    font-size: 1.2rem;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+.rain-chance {
+    font-size: 0.8rem;
+
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   WEATHER THEMES
+========================================= */
+
+body.sunny {
+    background: linear-gradient(
+        135deg,
+        #2196f3,
+        #64b5f6
+    );
+}
+
+
+body.cloudy {
+    background: linear-gradient(
+        135deg,
+        #607d8b,
+        #90a4ae
+    );
+}
+
+
+body.rainy {
+    background: linear-gradient(
+        135deg,
+        #37474f,
+        #607d8b
+    );
+}
+
+
+body.night {
+    background: linear-gradient(
+        135deg,
+        #0d1b2a,
+        #1b263b
+    );
+}
+
+
+/* =========================================
+   HIDE ELEMENTS
+========================================= */
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   TABLET / SMALL SCREEN
+========================================= */
+
+@media (max-width: 700px) {
+
+    .search-section {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .search-wrapper {
+        max-width: none;
+    }
+
+
+    .unit-toggle {
+        align-self: center;
+    }
+
+
+    .weather-details {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .temperature {
+        font-size: 3.2rem;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+
+    .weather-content {
+        padding: 20px 15px;
+    }
+
+
+    .search-box button {
+        padding: 12px;
+    }
+
+
+    .weather-details {
+        gap: 10px;
+    }
+
+}
